@@ -161,6 +161,23 @@
     ]
   },
   {
+    "id": "carousel",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Sponsor Logo",
+        "multi": true
+      },
+      {
+        "component": "text",
+        "name": "alt",
+        "label": "Alt Text",
+        "multi": true
+      }
+    ]
+  },
+  {
     "id": "columns",
     "fields": [
       {
