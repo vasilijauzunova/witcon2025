@@ -13,11 +13,15 @@
 :root {
   /* colors */
   --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  --light-color: #f5f5f5;
+  --dark-color: #2d2d2d;
+  --text-color: #333;
+  --link-color: #C724B1;
+  --link-hover-color: #9a1c8a;
+  --primary-color: #C724B1;
+  --secondary-color: #6e1d63;
+  --accent-color: #ff6b9d;
+  --dark-bg: #1a1a1a;
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
@@ -70,6 +74,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   display: none;
   margin: 0;
@@ -107,13 +115,24 @@ h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.25;
   scroll-margin: 40px;
+  color: var(--dark-color);
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
+h1 { 
+  font-size: var(--heading-font-size-xxl);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2 { 
+  font-size: var(--heading-font-size-xl);
+  color: var(--dark-color);
+}
+
 h3 { font-size: var(--heading-font-size-l); }
 h4 { font-size: var(--heading-font-size-m); }
 h5 { font-size: var(--heading-font-size-s); }
@@ -173,27 +192,31 @@ button {
   max-width: 100%;
   margin: 12px 0;
   border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
+  border-radius: 30px;
+  padding: 12px 32px;
   font-family: var(--body-font-family);
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.25;
   text-align: center;
   text-decoration: none;
-  background-color: var(--link-color);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   color: var(--background-color);
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgb(199 36 177 / 30%);
 }
 
 a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--link-hover-color);
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgb(199 36 177 / 40%);
   cursor: pointer;
 }
 
@@ -201,13 +224,23 @@ button:disabled,
 button:disabled:hover {
   background-color: var(--light-color);
   cursor: unset;
+  transform: none;
+  box-shadow: none;
 }
 
 a.button.secondary,
 button.secondary {
-  background-color: unset;
-  border: 2px solid currentcolor;
-  color: var(--text-color);
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  box-shadow: none;
+}
+
+a.button.secondary:hover,
+button.secondary:hover {
+  background: var(--primary-color);
+  color: var(--background-color);
+  box-shadow: 0 4px 15px rgb(199 36 177 / 30%);
 }
 
 main img {
@@ -255,3 +288,56 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+main .section.purple {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: var(--background-color);
+  margin: 0;
+  padding: 60px 0;
+}
+
+main .section.purple h1,
+main .section.purple h2,
+main .section.purple h3,
+main .section.purple h4,
+main .section.purple h5,
+main .section.purple h6 {
+  color: var(--background-color);
+  -webkit-text-fill-color: var(--background-color);
+}
+
+main .section.purple p {
+  color: var(--background-color);
+  opacity: 0.95;
+}
+
+main .section.dark {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: var(--background-color);
+  margin: 0;
+  padding: 60px 0;
+}
+
+main .section.dark h1,
+main .section.dark h2,
+main .section.dark h3,
+main .section.dark h4,
+main .section.dark h5,
+main .section.dark h6 {
+  color: var(--background-color);
+}
+
+main .section.dark p {
+  color: var(--background-color);
+  opacity: 0.9;
+}
+
+/* Accent elements */
+.accent-line {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
+  margin: 1rem 0;
+  border-radius: 2px;
+}
+

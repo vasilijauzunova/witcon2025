@@ -1,10 +1,18 @@
 .columns > div {
   display: flex;
   flex-direction: column;
+  gap: 32px;
 }
 
 .columns img {
   width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
+  transition: transform 0.3s ease;
+}
+
+.columns img:hover {
+  transform: scale(1.02);
 }
 
 .columns > div > div {
@@ -19,11 +27,22 @@
   display: block;
 }
 
+.columns h2,
+.columns h3 {
+  color: var(--dark-color);
+  margin-bottom: 1rem;
+}
+
+.columns p {
+  color: #666;
+  line-height: 1.8;
+}
+
 @media (width >= 900px) {
   .columns > div {
     align-items: center;
     flex-direction: unset;
-    gap: 24px;
+    gap: 48px;
   }
 
   .columns > div > div {
