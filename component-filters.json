@@ -38,5 +38,8 @@
       "button",
       "title"
     ]
+  },
+  {
+    "id": "video"
   }
 ]
