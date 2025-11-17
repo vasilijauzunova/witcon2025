@@ -233,6 +233,25 @@
     ]
   },
   {
+    "id": "text",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "content",
+        "label": "Content",
+        "valueType": "string",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "name": "alignment",
+        "label": "Alignment",
+        "valueType": "string",
+        "value": "center"
+      }
+    ]
+  },
+  {
     "id": "video",
     "fields": [
       {
