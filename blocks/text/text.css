@@ -50,9 +50,11 @@
   padding-left: 0;
   margin-left: 0;
 }
+
 .text .text-content ul li::marker {
   content: '';
 }
+
 /* Optional: tighten nested indentation */
 .text .text-content ul ul,
 .text .text-content ul ol {
