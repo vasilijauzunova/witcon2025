@@ -59,12 +59,80 @@ async function loadFonts() {
 }
 
 /**
+ * Check if URL is an Instagram URL
+ * @param {string} url - URL to check
+ * @returns {boolean} true if Instagram URL
+ */
+function isInstagramUrl(url) {
+  return url.includes('instagram.com/p/') || url.includes('instagram.com/reel/');
+}
+
+/**
+ * Auto-block Instagram URLs as embed blocks
+ * @param {Element} main The main element
+ */
+function autoBlockInstagram(main) {
+  // Find all paragraphs with Instagram links
+  const paragraphs = main.querySelectorAll('p');
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const p of paragraphs) {
+    const link = p.querySelector('a[href*="instagram.com"]');
+    if (!link) continue; // eslint-disable-line no-continue
+
+    const url = link.href;
+    if (!isInstagramUrl(url)) continue; // eslint-disable-line no-continue
+
+    // Check if link is the only/main content in the paragraph
+    const textContent = p.textContent.trim();
+    const linkText = link.textContent.trim();
+    // eslint-disable-next-line no-continue
+    if (textContent !== linkText && textContent !== url) continue;
+
+    // Check for optional preview image immediately before this paragraph
+    let previewImage = null;
+    const prevElement = p.previousElementSibling;
+    if (prevElement?.tagName === 'P') {
+      const picture = prevElement.querySelector('picture');
+      if (picture && !prevElement.querySelector('a, em, strong')) {
+        previewImage = picture;
+      }
+    }
+
+    // Create embed block
+    const embedBlock = document.createElement('div');
+    embedBlock.className = 'embed';
+
+    const row = document.createElement('div');
+    if (previewImage) {
+      const imgCell = document.createElement('div');
+      imgCell.appendChild(previewImage.cloneNode(true));
+      row.appendChild(imgCell);
+    }
+
+    const linkCell = document.createElement('div');
+    linkCell.appendChild(link.cloneNode(true));
+    row.appendChild(linkCell);
+
+    embedBlock.appendChild(row);
+
+    // Replace paragraph with embed block
+    p.replaceWith(embedBlock);
+
+    // Remove the preview image paragraph if we used it
+    if (previewImage && prevElement) {
+      prevElement.remove();
+    }
+  }
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-function buildAutoBlocks() {
+function buildAutoBlocks(main) {
   try {
-    // TODO: add auto block, if needed
+    autoBlockInstagram(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

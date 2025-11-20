@@ -197,6 +197,19 @@
     ]
   },
   {
+    "id": "embed",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "url",
+        "label": "Instagram URL",
+        "description": "Enter an Instagram post or reel URL (e.g., https://www.instagram.com/p/...)",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "fragment",
     "fields": [
       {
